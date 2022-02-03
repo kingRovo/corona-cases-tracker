@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class CasesServices {
 
-    private static String Cases_DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
+    private static String Cases_DATA_URL = "https://covid19.who.int/WHO-COVID-19-global-data.csv";
 
     private List<CoronaStats> allStats = new ArrayList<>();
 
@@ -39,15 +39,23 @@ public class CasesServices {
         StringReader csvBodyReader = new StringReader(httpResponse.body());
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReader);
         for (CSVRecord record : records) {
-            CoronaStats coronaStats = new CoronaStats();
-            coronaStats.setState(record.get("Province/State"));
-            coronaStats.setCountry(record.get("Country/Region"));
-            int latestCases = Integer.parseInt(record.get(record.size() - 1));
-            int prevDayCases = Integer.parseInt(record.get(record.size() - 2));
-            coronaStats.setLatestTotalCases(latestCases);
-            coronaStats.setDiffFromPrevDay(latestCases - prevDayCases);
-            newStats.add(coronaStats);
-        }
+
+            //if (java.time.LocalDate.now().toString() == record.get("Date_reported")) {
+
+
+
+
+                CoronaStats coronaStats = new CoronaStats();
+                coronaStats.setCountry(record.get("Country"));
+                coronaStats.setNewCases(Integer.parseInt(record.get("New_cases")));
+                coronaStats.setNewdeath(Integer.parseInt(record.get("New_deaths")));
+                int latestCases = Integer.parseInt(record.get(record.size() - 1));
+                int prevDayCases = Integer.parseInt(record.get(record.size() - 2));
+                coronaStats.setLatestTotalCases(latestCases);
+                coronaStats.setDiffFromPrevDay(latestCases - prevDayCases);
+                newStats.add(coronaStats);
+            }
+       // }
         this.allStats = newStats;
     }
 }

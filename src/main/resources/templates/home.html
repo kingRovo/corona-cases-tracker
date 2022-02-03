@@ -26,14 +26,17 @@
 
     <table class="table table-striped">
         <tr>
-            <th>State</th>
+
             <th>Country</th>
+            <th>New Cases</th>
+            <th>New Death</th>
             <th>Total cases reported</th>
             <th>New Cases</th>
         </tr>
         <tr th:each="coronastats : ${coronastats}">
-            <td th:text="${coronastats.state}"></td>
             <td th:text="${coronastats.country}"></td>
+            <td th:text="${coronastats.newCases}"></td>
+            <td th:text="${coronastats.newdeath}"></td>
             <td th:text="${coronastats.latestTotalCases}">0</td>
             <td th:text="${coronastats.diffFromPrevDay}">0</td>
         </tr>

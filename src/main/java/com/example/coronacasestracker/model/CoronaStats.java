@@ -2,10 +2,28 @@ package com.example.coronacasestracker.model;
 
 public class CoronaStats {
 
-    private String state;
+
     private String country;
+    private int newCases;
+    private  int newdeath;
     private int latestTotalCases;
     private int diffFromPrevDay;
+
+    public int getNewCases() {
+        return newCases;
+    }
+
+    public void setNewCases(int newCases) {
+        this.newCases = newCases;
+    }
+
+    public int getNewdeath() {
+        return newdeath;
+    }
+
+    public void setNewdeath(int newdeath) {
+        this.newdeath = newdeath;
+    }
 
     public int getDiffFromPrevDay() {
         return diffFromPrevDay;
@@ -14,15 +32,6 @@ public class CoronaStats {
     public void setDiffFromPrevDay(int diffFromPrevDay) {
         this.diffFromPrevDay = diffFromPrevDay;
     }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public String getCountry() {
         return country;
     }
